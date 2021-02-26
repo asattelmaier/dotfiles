@@ -1,0 +1,17 @@
+# Avoid black background when using GNU screen
+# @see: https://stackoverflow.com/a/14709845/7091146
+defbce on
+# Avoid black background when using GNU screen
+# @see: https://stackoverflow.com/a/6918905/7091146
+set term=screen-256color
+
+
+
+# Turn off the welcome message
+startup_message off
+
+
+
+# Set scrollback buffer to 10000
+defscrollback 10000
+
