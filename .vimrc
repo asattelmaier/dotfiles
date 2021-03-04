@@ -1,6 +1,3 @@
-" load plugins
-execute pathogen#infect()
-
 " enable file type detection
 filetype plugin indent on
 
@@ -22,8 +19,27 @@ let mapleader=","
 " go out in insert mode
 inoremap jj <ESC>
 
-" add colorscheme
-syntax enable
+" Enable syntax highlighting
+syntax on
+
+
+
+" Plugins ------------------------------------------------------------
+
+" Load plugin
+call plug#begin('~/.vim/plugged')
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'neovimhaskell/haskell-vim'
+
+call plug#end()
+
+
+
+" Plugin Configuration -----------------------------------------------
+
+" vim-colors-solarized 
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+
