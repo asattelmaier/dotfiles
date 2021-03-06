@@ -28,7 +28,8 @@ set colorcolumn=80                " Set line length marker
 
 set cursorline                    " highlight current line
 
-let mapleader=","                 " Use a different mapleader (default '\')
+" Use a different mapleader (default '\')
+let mapleader=","
 
 " Exit insert mode
 inoremap jj <ESC>
@@ -72,7 +73,15 @@ nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
 nmap <leader> r  <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader> c  <Plug>(coc-format-selected)
-nmap <leader> c  <Plug>(coc-format-selected)
+
+
+" ----------------------------------------------------------------------
+" Haskell Settings
+" ----------------------------------------------------------------------
+
+augroup haskell_bindings
+  autocmd! haskell_bindings
+  " Autoformat
+  autocmd Filetype haskell nmap <buffer> <silent> <leader>c :%!stylish-haskell<CR>
+augroup end
 
