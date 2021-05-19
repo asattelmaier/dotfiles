@@ -27,3 +27,44 @@ stty -ixon
 # @see: https://stackoverflow.com/a/6918905/7091146
 TERM=xterm-256color
 
+
+
+# free port
+# usage:
+#   fp PORT
+function fp()
+{
+    local port="$1"
+    local pid="$(lsof -t -i:$port)"
+
+    if test -z "$pid"
+    then
+        echo "No process listens to port $port"
+    else
+        kill -9 $pid
+    fi
+}
+
+
+
+# free port on wsl for windows
+# usage:
+#   w:fp PORT
+function w:fp()
+{
+    local port="$1"
+    local pid="$(
+        netstat.exe -ano \
+      | findstr.exe :$port \
+      | sed -r 's/(\s+[^\s]+){4}(.*)/\1/' \
+      | tr -d '\r'
+    )"
+
+    if test -z "$pid"
+    then
+        echo "No process listens to port $port"
+    else
+        taskkill.exe /F /PID $pid
+    fi
+}
+
