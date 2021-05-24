@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -72,6 +73,15 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Symbol renaming.
 nmap <leader> r  <Plug>(coc-rename)
+
+
+
+" ----------------------------------------------------------------------
+" Plugins - CtrlP
+" ----------------------------------------------------------------------
+
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
 
