@@ -104,5 +104,5 @@ augroup haskell_bindings
   autocmd! haskell_bindings
   " Autoformat
   autocmd Filetype haskell nmap <buffer> <silent> <leader>c :%!stylish-haskell<CR>
-augroup end
+augroup END
 

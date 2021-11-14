@@ -1,2 +1,8 @@
 .vim/plugged
 .vim/.netrwhist
+.cabal/bin
+.cabal/logs
+.cabal/packages
+.cabal/store
+*.swp
+
