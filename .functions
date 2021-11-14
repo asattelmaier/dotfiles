@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Remove all exited Docker container
+function drm() {
+  docker rm $(docker ps --filter status=exited -q)
+}
+
+# free port
+# usage:
+#   fp PORT
+function fp()
+{
+    local port="$1"
+    local pid="$(lsof -t -i:$port)"
+
+    if test -z "$pid"
+    then
+        echo "No process listens to port $port"
+    else
+        kill -9 $pid
+    fi
+}
