@@ -1,22 +1,63 @@
 #!/bin/bash
 
 # Remove all exited Docker container
+# Usage: drm
 function drm() {
   docker rm $(docker ps --filter status=exited -q)
 }
 
-# free port
-# usage:
-#   fp PORT
-function fp()
-{
-    local port="$1"
-    local pid="$(lsof -t -i:$port)"
-
-    if test -z "$pid"
-    then
-        echo "No process listens to port $port"
-    else
-        kill -9 $pid
-    fi
+# Execute interactive bash shell in a running Docker container
+# Usage: dex <container_name>
+function dex() {
+  docker exec -it $1 /bin/bash
 }
+
+# Run interactive bash shell in a Docker container
+# Usage: drun <container_name>
+function drun() {
+  docker run -it $1 /bin/bash
+}
+
+# List running Docker containers
+# Usage: dps
+function dps() {
+  docker ps
+}
+
+# Find and kill the process listening on a specific port
+# Usage: fp <port>
+function fp(){
+  local port="$1"
+  local pid="$(lsof -t -i:$port)"
+
+  if test -z "$pid"
+  then
+    echo "No process listens to port $port"
+  else
+    kill -9 $pid
+  fi
+}
+
+# Repeat a command multiple times
+# Usage: repeat <times> <command>
+function repeat() {
+  local times="$1"
+  local command="${*:2}"
+  
+  for ((i=0;i<$times;i++)); do
+    eval $command
+  done
+}
+
+# Display top processes based on specified resource (CPU/Memory)
+# Usage: whoeats <cpu|mem>
+function whoeats() {
+  ps -eo pid,cmd:50,%mem,%cpu --sort=-%$1 | head
+}
+
+# Kill all detached screen sessions
+# Usage: kscreens
+function kscreens() {
+  screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
+}
+
