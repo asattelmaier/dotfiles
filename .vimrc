@@ -14,8 +14,6 @@ set softtabstop=2                 "| Tab settings
 set shiftwidth=2                  "|
 set expandtab                     "┘
 
-set number relativenumber         " Use relative line numbers
-
 if has('cmdline_info')
   set ruler                       " Show cursor position
 endif
