@@ -1,6 +1,5 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 
-# Load functions
-[ -r ~/.functions ] && source ~/.functions
-
+# Load the interactive shell configuration for login shells
+[ -r ~/.bashrc ] && source ~/.bashrc
